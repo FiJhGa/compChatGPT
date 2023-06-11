@@ -1,30 +1,4 @@
-# Code for "Like hiking? You probably enjoy nature: Persona-grounded Dialog with Commonsense Expansions"
-
-[Like hiking? You probably enjoy nature: Persona-grounded Dialog with Commonsense Expansions](https://www.aclweb.org/anthology/2020.emnlp-main.739.pdf)
-
-Bodhisattwa Prasad Majumder, Harsh Jhamtani, Taylor Berg-Kirkpatrick, Julian McAuley
-
-Published at EMNLP 2020.
-
-![compac](https://github.com/majumderb/compac/blob/master/image/compac.png?raw=true)
-
-# Data
-
-Huggingface cleaned dataset
-
-`wget https://s3.amazonaws.com/datasets.huggingface.co/personachat/personachat_self_original.json`
-
-(Optional) Personachat Download:
-http://parl.ai/downloads/personachat/personachat.tgz
-
-## COMET-expanded PersonaChat
-
-You can download PersonaChat dataset with added COMET expansions from [here](https://drive.google.com/file/d/1tJih0IecAmP3IlP6TYvDjy3kOpIbMUIH/view?usp=sharing). 
-
-# Training
-
-The training script is [here](https://github.com/majumderb/compac/blob/master/models/reinforce_model/train.py). Please download the data (mainly COMET expansions) before training. The training may require 4 2080Tis or higher.
-
-
-
-# FiJhGa-compac-ChatGPT
+#For testing
+generated_MOD : Generate predictions given the utterance
+python -m models.reinforce_model.generate_MOD --dataset_path="data/expanded_profiles_personachat.json" --model_checkpoint_dir="models/reinforce_model/runs/May29_09-41-09_pgth07_gpt2_reinforce_ChatGPT_beams_ALL_Det_Hist" --dataset_cache="persona_ChatGPT_expansions_test" --num_beams=-1 --test_run_num=-1 --load_checkpoint_from="checkpoint_mymodel_911160.pt" --max_history=2 --max_length=20 --temperature=0.7 --save_loc="data/bleu_gen_hist/generationsChatGPT_Temp_07_bleu_history.json" --top_k=50 --top_p=0.95 --greedy_profile=True --use_history=True
+bleu.py : Generate bleu and ppl metrics
